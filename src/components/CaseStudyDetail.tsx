@@ -201,9 +201,9 @@ export const caseStudyData: Record<string, CaseStudy> = {
        { value: "APEX", label: "BRAND EQUITY" }
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dqcml6pbi/video/upload/v1774663877/IMG_2408_jszun2.mp4",
+      "https://res.cloudinary.com/dqcml6pbi/video/upload/v1774663846/-5013837415203791951_sznnhe.mov",
+      "https://res.cloudinary.com/dqcml6pbi/video/upload/v1774663841/-7791242008770701953_yyr1ht.mov"
     ]
   }
 };
@@ -214,7 +214,7 @@ const allMediaFiles = import.meta.glob('../assets/portfolio/**/*.{png,PNG,jpg,JP
 
 const RenderMediaItem = ({ url, className = "" }: { url: string, className?: string }) => {
   const lowerUrl = url.toLowerCase();
-  const isVideo = lowerUrl.endsWith('.mp4') || lowerUrl.endsWith('.webm');
+  const isVideo = lowerUrl.endsWith('.mp4') || lowerUrl.endsWith('.webm') || lowerUrl.endsWith('.mov');
   const isPdf = lowerUrl.endsWith('.pdf');
 
   if (isPdf) {
@@ -330,13 +330,13 @@ const PortfolioGallery = ({ items, clientName, xQuote, xDesc }: { items: string[
                    <div className="hidden lg:grid grid-cols-3 gap-20 items-start">
                      <div className="flex flex-col">
                        {strategyBlock}
-                       {items.filter((_, i) => i % 3 === 0).map((url, i) => renderItem(url, items.indexOf(url)))}
+                       {items.filter((_, i) => i % 3 === 0).map((url) => renderItem(url, items.indexOf(url)))}
                      </div>
                      <div className="flex flex-col mt-32">
-                       {items.filter((_, i) => i % 3 === 1).map((url, i) => renderItem(url, items.indexOf(url)))}
+                       {items.filter((_, i) => i % 3 === 1).map((url) => renderItem(url, items.indexOf(url)))}
                      </div>
                      <div className="flex flex-col mt-16">
-                       {items.filter((_, i) => i % 3 === 2).map((url, i) => renderItem(url, items.indexOf(url)))}
+                       {items.filter((_, i) => i % 3 === 2).map((url) => renderItem(url, items.indexOf(url)))}
                      </div>
                    </div>
 
@@ -344,17 +344,17 @@ const PortfolioGallery = ({ items, clientName, xQuote, xDesc }: { items: string[
                    <div className="hidden md:grid lg:hidden grid-cols-2 gap-12 items-start">
                      <div className="flex flex-col">
                        {strategyBlock}
-                       {items.filter((_, i) => i % 2 === 0).map((url, i) => renderItem(url, items.indexOf(url)))}
+                       {items.filter((_, i) => i % 2 === 0).map((url) => renderItem(url, items.indexOf(url)))}
                      </div>
                      <div className="flex flex-col mt-20">
-                       {items.filter((_, i) => i % 2 === 1).map((url, i) => renderItem(url, items.indexOf(url)))}
+                       {items.filter((_, i) => i % 2 === 1).map((url) => renderItem(url, items.indexOf(url)))}
                      </div>
                    </div>
 
                    {/* Mobile Layout (1 Column) */}
                    <div className="grid md:hidden grid-cols-1 gap-12 items-start">
                      {strategyBlock}
-                     {items.map((url, i) => renderItem(url, items.indexOf(url)))}
+                     {items.map((url) => renderItem(url, items.indexOf(url)))}
                    </div>
                  </>
                );
