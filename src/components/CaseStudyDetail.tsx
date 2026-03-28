@@ -135,9 +135,9 @@ export const caseStudyData: Record<string, CaseStudy> = {
       { value: "ROI", label: "MAXIMIZED" }
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1542744094-3a31f272c490?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1527719327859-c6ce80353573?q=80&w=800&auto=format&fit=crop",
     ]
   },
   "salad-shak": {
@@ -157,9 +157,9 @@ export const caseStudyData: Record<string, CaseStudy> = {
       { value: "100%", label: "COMMUNITY BUY-IN" }
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1493770348161-369560ae357d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=800&auto=format&fit=crop",
     ]
   },
   "orchid-tree": {
@@ -303,15 +303,20 @@ const PortfolioGallery = ({ items, clientName, xQuote, xDesc }: { items: string[
             );
 
             const renderItem = (mediaUrl: string, globalIdx: number) => (
-              <div
+              <motion.div
                 key={globalIdx}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
                 className="w-full max-w-[450px] mx-auto break-inside-avoid relative group mb-12 md:mb-20 lg:mb-32"
               >
                 {/* Decorative offset border matching the magazine style */}
-                <div className="absolute -inset-4 md:-inset-6 border-[2px] border-brand-accent/30 rounded-none z-0 translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6"></div>
+                <div className="absolute -inset-4 md:-inset-6 border-[2px] border-brand-accent/30 rounded-none z-0 translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
 
-                {/* Pure unblocked rendering block */}
-                <div className="relative z-10 w-full overflow-hidden shadow-2xl bg-brand-dark transition-all duration-700">
+                {/* Mobile Vibrant / Desktop Grayscale block with warm overlay */}
+                <div className="relative z-10 w-full overflow-hidden shadow-2xl bg-brand-dark filter md:grayscale group-hover:grayscale-0 transition-all duration-700">
+                  <div className="absolute inset-0 bg-brand-accent/10 mix-blend-overlay z-20 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none"></div>
                   <RenderMediaItem url={mediaUrl} className={(typeof mediaUrl === 'string' ? mediaUrl : (mediaUrl as any)?.default || '').toLowerCase().endsWith('.pdf') ? "aspect-[3/4]" : "h-auto max-h-[80vh] object-contain"} />
                 </div>
 
@@ -321,7 +326,7 @@ const PortfolioGallery = ({ items, clientName, xQuote, xDesc }: { items: string[
                   <p className="font-serif italic text-white/50 text-sm md:text-base">Paradx Digital</p>
                   <p className="font-sans text-brand-accent text-xs md:text-sm font-bold uppercase tracking-[0.3em] mt-1">Exhibit {String(globalIdx + 1).padStart(2, '0')}</p>
                 </div>
-              </div>
+              </motion.div>
             );
 
             return (
@@ -753,10 +758,10 @@ export const CaseStudyDetail = ({ clientId, onBack, setActivePage }: { clientId:
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center flex flex-col items-center max-w-5xl mx-auto">
           <div className="absolute top-0 right-1/2 translate-x-1/2 w-[600px] h-[400px] bg-brand-accent/5 blur-[120px] rounded-full pointer-events-none"></div>
           <h3 className="font-display font-black text-5xl md:text-[5rem] leading-[0.9] text-white uppercase tracking-tighter mb-6 relative z-10">
-            If Your Business Has Demand,<br />We Can Scale It.
+            Got A Similar Idea?<br /><span className="text-white/40">Launch Before Your Competitor Does.</span>
           </h3>
-          <p className="font-serif italic text-white/50 text-2xl md:text-3xl mb-12 relative z-10">
-            Let’s build your next growth engine.
+          <p className="font-serif italic text-brand-accent/80 text-2xl md:text-3xl mb-12 relative z-10">
+            Reach out to us to own your market.
           </p>
           <button
             onClick={() => setActivePage('Contact Us')}

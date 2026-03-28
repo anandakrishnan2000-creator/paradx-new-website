@@ -61,7 +61,7 @@ export const Hero = () => {
             <motion.span 
               key={index}
               variants={child}
-              className="font-display font-bold text-5xl md:text-6xl lg:text-8xl xl:text-[7rem] leading-none mr-[1.5vw] mb-4 md:mb-6 uppercase tracking-tight"
+              className="font-display font-bold text-[clamp(2rem,11vw,3.5rem)] md:text-6xl lg:text-8xl xl:text-[7rem] leading-[0.9] md:leading-none mr-[2vw] md:mr-[1.5vw] mb-3 md:mb-6 uppercase tracking-tighter"
             >
               {word === "entrepreneurs" || word === "business" ? (
                 <span className="text-brand-accent">{word}</span>
