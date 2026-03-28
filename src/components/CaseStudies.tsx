@@ -106,13 +106,17 @@ export const CaseStudies = ({ setActivePage }: { setActivePage?: (page: string, 
               transition={{ duration: 0.5, delay: idx * 0.1 }}
             >
               <motion.div
-                onClick={() => { if(setActivePage) setActivePage('Case Study Detail', undefined, study.id); }}
                 initial="initial"
                 whileHover="hover"
                 whileInView="hover"
                 viewport={{ margin: "-20% 0px -20% 0px", once: false, amount: 0.4 }}
-                className="relative overflow-hidden rounded-[2.5rem] bg-gray-50 cursor-pointer h-[280px] md:h-[320px] flex items-center justify-center border border-gray-200 shadow-sm transition-all duration-700"
+                className="relative overflow-hidden rounded-[2.5rem] bg-gray-50 h-[280px] md:h-[320px] flex items-center justify-center border border-gray-200 shadow-sm transition-all duration-700"
               >
+                {/* Bulletproof Native Click Overlay */}
+                <div 
+                  className="absolute inset-0 z-50 cursor-pointer" 
+                  onClick={() => { if(setActivePage) setActivePage('Case Study Detail', undefined, study.id); }}
+                />
                 {/* Cyan Glow Hover Effect Border */}
                 <motion.div 
                   variants={{ initial: { borderColor: "transparent" }, hover: { borderColor: "#00E5FF" } }}

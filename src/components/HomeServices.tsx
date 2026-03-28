@@ -45,17 +45,21 @@ export const HomeServices = ({ setActivePage }: { setActivePage?: (page: string,
           {services.map((service, i) => (
             <motion.div
               key={i}
-              onClick={() => {
-                if(setActivePage) {
-                  setActivePage('Services', `service-${i}`);
-                }
-              }}
-              className="bg-gray-100 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden cursor-pointer h-[450px] shadow-sm hover:shadow-2xl transition-shadow duration-500"
+              className="bg-gray-100 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden h-[450px] shadow-sm hover:shadow-2xl transition-shadow duration-500"
               initial="initial"
               whileHover="hover"
               whileInView="hover"
               viewport={{ margin: "-20% 0px -20% 0px", once: false, amount: 0.4 }}
             >
+              {/* Bulletproof Native Click Overlay */}
+              <div 
+                className="absolute inset-0 z-50 cursor-pointer"
+                onClick={() => {
+                  if(setActivePage) {
+                    setActivePage('Services', `service-${i}`);
+                  }
+                }}
+              />
               {/* Image Reveal Overlay */}
               <motion.div
                 className="absolute inset-0 z-0 origin-bottom"
