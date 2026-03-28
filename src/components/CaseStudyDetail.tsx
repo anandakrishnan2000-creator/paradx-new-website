@@ -212,17 +212,22 @@ export const caseStudyData: Record<string, CaseStudy> = {
 // Using Vite's import.meta.glob to automatically bundle anything dropped into these folders. (HMR trigger swapped)
 const allMediaFiles = import.meta.glob('../assets/portfolio/**/*.{png,PNG,jpg,JPG,jpeg,JPEG,webp,WEBP,gif,GIF,mp4,MP4,webm,WEBM,pdf,PDF}', { eager: true, as: 'url' });
 
-const RenderMediaItem = ({ url, className = "" }: { url: string, className?: string }) => {
-  const lowerUrl = url.toLowerCase();
+const RenderMediaItem = ({ url, className = "" }: { url: any, className?: string }) => {
+  // Bulletproof object extraction in case Vite's import.meta.glob returns a module object instead of a direct string
+  const resolvedUrl = typeof url === 'string' ? url : (url?.default || "");
+  
+  if (!resolvedUrl) return null;
+
+  const lowerUrl = resolvedUrl.toLowerCase();
   const isVideo = lowerUrl.endsWith('.mp4') || lowerUrl.endsWith('.webm') || lowerUrl.endsWith('.mov');
   const isPdf = lowerUrl.endsWith('.pdf');
 
   if (isPdf) {
     return (
       <div className={`relative bg-brand-dark group overflow-hidden ${className}`}>
-        <iframe src={`${url}#toolbar=0&navpanes=0&scrollbar=0`} className="w-full h-full object-cover scale-[1.02] border-none outline-none" title="Portfolio Document" />
+        <iframe src={`${resolvedUrl}#toolbar=0&navpanes=0&scrollbar=0`} className="w-full h-full object-cover scale-[1.02] border-none outline-none" title="Portfolio Document" />
         <div className="absolute inset-0 bg-brand-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center justify-center z-10">
-          <a href={url} target="_blank" rel="noopener noreferrer" className="bg-brand-accent text-brand-dark px-8 py-4 rounded-full font-sans font-bold text-sm tracking-widest uppercase shadow-2xl pointer-events-auto transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:scale-105">
+          <a href={resolvedUrl} target="_blank" rel="noopener noreferrer" className="bg-brand-accent text-brand-dark px-8 py-4 rounded-full font-sans font-bold text-sm tracking-widest uppercase shadow-2xl pointer-events-auto transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:scale-105">
             Read Full Doc
           </a>
         </div>
@@ -232,12 +237,12 @@ const RenderMediaItem = ({ url, className = "" }: { url: string, className?: str
 
   if (isVideo) {
     return (
-      <video src={url} className={`w-full h-auto object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] block origin-center mix-blend-multiply md:mix-blend-normal ${className}`} autoPlay loop muted playsInline />
+      <video src={resolvedUrl} className={`w-full h-auto object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] block origin-center mix-blend-multiply md:mix-blend-normal ${className}`} autoPlay loop muted playsInline />
     );
   }
 
   return (
-    <img src={url} className={`w-full h-auto object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] block origin-center mix-blend-multiply md:mix-blend-normal ${className}`} alt="Portfolio Showcase" />
+    <img src={resolvedUrl} className={`w-full h-auto object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] block origin-center mix-blend-multiply md:mix-blend-normal ${className}`} alt="Portfolio Showcase" />
   );
 };
 
@@ -312,7 +317,7 @@ const PortfolioGallery = ({ items, clientName, xQuote, xDesc }: { items: string[
                 {/* Grayscale block with warm overlay */}
                 <div className="relative z-10 w-full overflow-hidden shadow-2xl bg-brand-dark filter grayscale group-hover:grayscale-0 transition-all duration-700">
                   <div className="absolute inset-0 bg-brand-accent/10 mix-blend-overlay z-20 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none"></div>
-                  <RenderMediaItem url={mediaUrl} className={mediaUrl.toLowerCase().endsWith('.pdf') ? "aspect-[3/4]" : "h-auto max-h-[80vh] object-contain"} />
+                  <RenderMediaItem url={mediaUrl} className={(typeof mediaUrl === 'string' ? mediaUrl : (mediaUrl as any)?.default || '').toLowerCase().endsWith('.pdf') ? "aspect-[3/4]" : "h-auto max-h-[80vh] object-contain"} />
                 </div>
 
                 {/* Minimalist Editorial Caption */}
