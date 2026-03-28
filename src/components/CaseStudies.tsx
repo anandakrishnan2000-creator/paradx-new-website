@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { ArrowDown } from 'lucide-react';
 
 import logo1 from '../assets/clients/ISAFE INTERNATIONAL.png';
@@ -42,6 +43,14 @@ const caseStudies = [
 ];
 
 export const CaseStudies = ({ setActivePage }: { setActivePage?: (page: string, targetId?: string, clientId?: string) => void }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div className="bg-brand-dark min-h-screen text-brand-light relative z-10">
       {/* Hero Section */}
@@ -108,7 +117,7 @@ export const CaseStudies = ({ setActivePage }: { setActivePage?: (page: string, 
               <motion.div
                 initial="initial"
                 whileHover="hover"
-                whileInView="hover"
+                whileInView={isMobile ? "hover" : undefined}
                 viewport={{ margin: "-20% 0px -20% 0px", once: false, amount: 0.4 }}
                 className="relative overflow-hidden rounded-[2.5rem] bg-gray-50 h-[280px] md:h-[320px] flex items-center justify-center border border-gray-200 shadow-sm transition-all duration-700"
               >

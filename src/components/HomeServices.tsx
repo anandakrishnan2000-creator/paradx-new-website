@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 const services = [
   {
@@ -34,6 +35,14 @@ const services = [
 ];
 
 export const HomeServices = ({ setActivePage }: { setActivePage?: (page: string, targetId?: string) => void }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section className="bg-white py-24 md:py-32 px-6 md:px-12 text-brand-dark">
       <div className="max-w-[1400px] mx-auto">
@@ -48,7 +57,7 @@ export const HomeServices = ({ setActivePage }: { setActivePage?: (page: string,
               className="bg-gray-100 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden h-[450px] shadow-sm hover:shadow-2xl transition-shadow duration-500"
               initial="initial"
               whileHover="hover"
-              whileInView="hover"
+              whileInView={isMobile ? "hover" : undefined}
               viewport={{ margin: "-20% 0px -20% 0px", once: false, amount: 0.4 }}
             >
               {/* Bulletproof Native Click Overlay */}
