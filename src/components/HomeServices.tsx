@@ -50,10 +50,11 @@ export const HomeServices = ({ setActivePage }: { setActivePage?: (page: string,
                   setActivePage('Services', `service-${i}`);
                 }
               }}
-              className="bg-gray-100 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group cursor-pointer h-[450px] shadow-sm hover:shadow-2xl transition-shadow duration-500"
-              data-cursor="hover"
+              className="bg-gray-100 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden cursor-pointer h-[450px] shadow-sm hover:shadow-2xl transition-shadow duration-500"
               initial="initial"
               whileHover="hover"
+              whileInView="hover"
+              viewport={{ margin: "-20% 0px -20% 0px", once: false, amount: 0.4 }}
             >
               {/* Image Reveal Overlay */}
               <motion.div
@@ -67,22 +68,28 @@ export const HomeServices = ({ setActivePage }: { setActivePage?: (page: string,
                 <div className="absolute inset-0 bg-brand-dark/70"></div>
               </motion.div>
               
-              <div className="relative z-10 flex flex-col h-full justify-between">
+              <div className="relative z-10 flex flex-col h-full justify-between pointer-events-none">
                 <div>
-                  <div className="font-sans font-bold text-sm tracking-[0.2em] mb-4 opacity-50 
-                    group-hover:text-white transition-colors duration-300">
+                  <motion.div 
+                    variants={{ initial: { color: "#9ca3af" }, hover: { color: "#ffffff" } }}
+                    className="font-sans font-bold text-sm tracking-[0.2em] mb-4 opacity-50 z-20">
                     0{i + 1}
-                  </div>
-                  <h3 className="font-display font-black text-4xl md:text-5xl uppercase tracking-tighter leading-none 
-                    group-hover:text-white transition-colors duration-300">
+                  </motion.div>
+                  <motion.h3 
+                    variants={{ initial: { color: "#111827" }, hover: { color: "#ffffff" } }}
+                    className="font-display font-black text-4xl md:text-5xl uppercase tracking-tighter leading-none z-20">
                     {service.title}
-                  </h3>
+                  </motion.h3>
                 </div>
                 
-                <p className="font-sans text-base leading-relaxed opacity-0 transform translate-y-4 
-                  group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 text-white">
+                <motion.p 
+                  variants={{
+                    initial: { opacity: 0, y: 16 },
+                    hover: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } }
+                  }}
+                  className="font-sans text-base leading-relaxed text-white">
                   {service.description}
-                </p>
+                </motion.p>
               </div>
             </motion.div>
           ))}

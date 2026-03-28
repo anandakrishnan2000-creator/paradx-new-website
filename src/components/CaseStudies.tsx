@@ -98,33 +98,60 @@ export const CaseStudies = ({ setActivePage }: { setActivePage?: (page: string, 
           {/* Asymmetric Masonry Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
             {caseStudies.map((study, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+            >
               <motion.div
-                key={idx}
                 onClick={() => { if(setActivePage) setActivePage('Case Study Detail', undefined, study.id); }}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group relative overflow-hidden rounded-[2.5rem] bg-gray-50 cursor-pointer h-[280px] md:h-[320px] flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all duration-700 hover:-translate-y-2"
+                initial="initial"
+                whileHover="hover"
+                whileInView="hover"
+                viewport={{ margin: "-20% 0px -20% 0px", once: false, amount: 0.4 }}
+                className="relative overflow-hidden rounded-[2.5rem] bg-gray-50 cursor-pointer h-[280px] md:h-[320px] flex items-center justify-center border border-gray-200 shadow-sm transition-all duration-700"
               >
                 {/* Cyan Glow Hover Effect Border */}
-                <div className="absolute inset-0 border-[3px] border-transparent group-hover:border-brand-accent transition-colors duration-500 z-30 pointer-events-none rounded-[2.5rem]"></div>
+                <motion.div 
+                  variants={{ initial: { borderColor: "transparent" }, hover: { borderColor: "#00E5FF" } }}
+                  className="absolute inset-0 border-[3px] transition-colors duration-500 z-30 pointer-events-none rounded-[2.5rem]" 
+                />
 
                 {/* Pure White Hover Background */}
-                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0 rounded-[2.5rem]"></div>
+                <motion.div 
+                  variants={{ initial: { opacity: 0 }, hover: { opacity: 1 } }}
+                  className="absolute inset-0 bg-white transition-opacity duration-500 z-0 rounded-[2.5rem]" 
+                />
 
                 {/* Initial State: Plain Text Name */}
-                <div className="absolute inset-0 flex items-center justify-center p-8 z-10 transition-all duration-700 transform group-hover:scale-110 group-hover:-translate-y-12 group-hover:opacity-0 group-hover:blur-md">
+                <motion.div 
+                  variants={{
+                    initial: { scale: 1, y: 0, opacity: 1, filter: "blur(0px)" },
+                    hover: { scale: 1.1, y: -48, opacity: 0, filter: "blur(8px)" }
+                  }}
+                  transition={{ duration: 0.7 }}
+                  className="absolute inset-0 flex items-center justify-center p-8 z-10 pointer-events-none"
+                >
                   <h3 className="font-display font-black text-3xl md:text-4xl uppercase tracking-tighter text-brand-dark text-center leading-none">
                     {study.title}
                   </h3>
-                </div>
+                </motion.div>
 
                 {/* Hover State: Sliding Logo */}
-                <div className="absolute inset-0 flex items-center justify-center p-12 z-20 opacity-0 transform translate-y-16 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+                <motion.div 
+                  variants={{
+                    initial: { y: 64, opacity: 0 },
+                    hover: { y: 0, opacity: 1 }
+                  }}
+                  transition={{ duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }}
+                  className="absolute inset-0 flex items-center justify-center p-12 z-20 pointer-events-none"
+                >
                   <img src={study.logo} alt={`${study.title} logo`} className="max-w-full max-h-full object-contain filter drop-shadow-xl" />
-                </div>
+                </motion.div>
               </motion.div>
+            </motion.div>
             ))}
 
             {/* Cyan Brand CTA Tile included in the Grid */}
