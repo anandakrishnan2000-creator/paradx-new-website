@@ -757,11 +757,12 @@ export const CaseStudyDetail = ({ clientId, onBack, setActivePage }: { clientId:
       <section className="bg-[#050505] py-32 px-6 md:px-12 relative z-40 border-t border-brand-accent/20">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center flex flex-col items-center max-w-5xl mx-auto">
           <div className="absolute top-0 right-1/2 translate-x-1/2 w-[600px] h-[400px] bg-brand-accent/5 blur-[120px] rounded-full pointer-events-none"></div>
-          <h3 className="font-display font-black text-5xl md:text-[5rem] leading-[0.9] text-white uppercase tracking-tighter mb-6 relative z-10">
-            Got A Similar Idea?<br /><span className="text-white/40">Launch Before Your Competitor Does.</span>
+          <h3 className="font-display font-black text-white uppercase tracking-tighter mb-8 relative z-10">
+            <span className="block text-5xl md:text-[5rem] leading-[0.9] mb-4">Got A Similar Idea?</span>
+            <span className="block text-3xl md:text-5xl leading-[1.1] text-white/40">Launch Before Your Competitor Does.</span>
           </h3>
-          <p className="font-serif italic text-brand-accent/80 text-2xl md:text-3xl mb-12 relative z-10">
-            Reach out to us to own your market.
+          <p className="font-serif italic text-white/50 text-2xl md:text-3xl mb-12 relative z-10">
+            Let’s build your next growth engine.
           </p>
           <button
             onClick={() => setActivePage('Contact Us')}
