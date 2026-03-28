@@ -761,7 +761,7 @@ export const CaseStudyDetail = ({ clientId, onBack, setActivePage }: { clientId:
             <span className="block text-5xl md:text-[5rem] leading-[0.9] mb-4">Got A Similar Idea?</span>
             <span className="block text-3xl md:text-5xl leading-[1.1] text-white/40">Launch Before Your Competitor Does.</span>
           </h3>
-          <p className="font-serif italic text-white/50 text-2xl md:text-3xl mb-12 relative z-10">
+          <p className="font-serif italic text-brand-accent text-2xl md:text-3xl mb-12 relative z-10">
             Let’s build your next growth engine.
           </p>
           <button
