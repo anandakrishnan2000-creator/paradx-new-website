@@ -52,14 +52,18 @@ export const HomeServices = ({ setActivePage }: { setActivePage?: (page: string,
               viewport={{ margin: "-20% 0px -20% 0px", once: false, amount: 0.4 }}
             >
               {/* Bulletproof Native Click Overlay */}
-              <div 
+              <a 
+                href={`#service-${i}`}
                 className="absolute inset-0 z-50 cursor-pointer"
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   if(setActivePage) {
                     setActivePage('Services', `service-${i}`);
                   }
                 }}
-              />
+              >
+                <span className="sr-only">View {service.title} details</span>
+              </a>
               {/* Image Reveal Overlay */}
               <motion.div
                 className="absolute inset-0 z-0 origin-bottom"

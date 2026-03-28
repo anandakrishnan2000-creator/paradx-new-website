@@ -113,10 +113,16 @@ export const CaseStudies = ({ setActivePage }: { setActivePage?: (page: string, 
                 className="relative overflow-hidden rounded-[2.5rem] bg-gray-50 h-[280px] md:h-[320px] flex items-center justify-center border border-gray-200 shadow-sm transition-all duration-700"
               >
                 {/* Bulletproof Native Click Overlay */}
-                <div 
+                <a 
+                  href={`#case-study-${study.id}`}
                   className="absolute inset-0 z-50 cursor-pointer" 
-                  onClick={() => { if(setActivePage) setActivePage('Case Study Detail', undefined, study.id); }}
-                />
+                  onClick={(e) => { 
+                    e.preventDefault();
+                    if(setActivePage) setActivePage('Case Study Detail', undefined, study.id); 
+                  }}
+                >
+                  <span className="sr-only">View {study.title} case study</span>
+                </a>
                 {/* Cyan Glow Hover Effect Border */}
                 <motion.div 
                   variants={{ initial: { borderColor: "transparent" }, hover: { borderColor: "#00E5FF" } }}
@@ -159,11 +165,13 @@ export const CaseStudies = ({ setActivePage }: { setActivePage?: (page: string, 
             ))}
 
             {/* Cyan Brand CTA Tile included in the Grid */}
-            <motion.div
+            <motion.a
+                href="#contact"
+                onClick={(e) => { e.preventDefault(); if (setActivePage) setActivePage('Contact Us'); }}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-[2rem] bg-brand-accent cursor-pointer h-[250px] md:h-[300px] p-8 md:p-12 flex flex-col justify-between shadow-2xl"
+                className="group relative overflow-hidden rounded-[2rem] bg-brand-accent cursor-pointer h-[250px] md:h-[300px] p-8 md:p-12 flex flex-col justify-between shadow-2xl block"
               >
                 <div className="text-brand-dark">
                   <h3 className="font-display font-black text-4xl md:text-5xl uppercase tracking-tighter leading-none mb-4">
@@ -176,7 +184,7 @@ export const CaseStudies = ({ setActivePage }: { setActivePage?: (page: string, 
                 <div className="self-end bg-brand-dark text-brand-accent w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <ArrowDown className="-rotate-45" size={24} />
                 </div>
-              </motion.div>
+              </motion.a>
           </div>
         </div>
       </section>

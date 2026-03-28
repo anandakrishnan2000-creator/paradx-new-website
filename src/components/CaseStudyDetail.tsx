@@ -237,12 +237,12 @@ const RenderMediaItem = ({ url, className = "" }: { url: any, className?: string
 
   if (isVideo) {
     return (
-      <video src={resolvedUrl} className={`w-full h-auto object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] block origin-center mix-blend-multiply md:mix-blend-normal ${className}`} autoPlay loop muted playsInline />
+      <video src={resolvedUrl} className={`w-full h-auto object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] block origin-center ${className}`} autoPlay loop muted playsInline />
     );
   }
 
   return (
-    <img src={resolvedUrl} className={`w-full h-auto object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] block origin-center mix-blend-multiply md:mix-blend-normal ${className}`} alt="Portfolio Showcase" />
+    <img src={resolvedUrl} className={`w-full h-auto object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] block origin-center ${className}`} alt="Portfolio Showcase" />
   );
 };
 
@@ -303,20 +303,15 @@ const PortfolioGallery = ({ items, clientName, xQuote, xDesc }: { items: string[
             );
 
             const renderItem = (mediaUrl: string, globalIdx: number) => (
-              <motion.div
+              <div
                 key={globalIdx}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
                 className="w-full max-w-[450px] mx-auto break-inside-avoid relative group mb-12 md:mb-20 lg:mb-32"
               >
                 {/* Decorative offset border matching the magazine style */}
-                <div className="absolute -inset-4 md:-inset-6 border-[2px] border-brand-accent/30 rounded-none z-0 translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
+                <div className="absolute -inset-4 md:-inset-6 border-[2px] border-brand-accent/30 rounded-none z-0 translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6"></div>
 
-                {/* Grayscale block with warm overlay */}
-                <div className="relative z-10 w-full overflow-hidden shadow-2xl bg-brand-dark filter grayscale group-hover:grayscale-0 transition-all duration-700">
-                  <div className="absolute inset-0 bg-brand-accent/10 mix-blend-overlay z-20 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none"></div>
+                {/* Pure unblocked rendering block */}
+                <div className="relative z-10 w-full overflow-hidden shadow-2xl bg-brand-dark transition-all duration-700">
                   <RenderMediaItem url={mediaUrl} className={(typeof mediaUrl === 'string' ? mediaUrl : (mediaUrl as any)?.default || '').toLowerCase().endsWith('.pdf') ? "aspect-[3/4]" : "h-auto max-h-[80vh] object-contain"} />
                 </div>
 
@@ -326,7 +321,7 @@ const PortfolioGallery = ({ items, clientName, xQuote, xDesc }: { items: string[
                   <p className="font-serif italic text-white/50 text-sm md:text-base">Paradx Digital</p>
                   <p className="font-sans text-brand-accent text-xs md:text-sm font-bold uppercase tracking-[0.3em] mt-1">Exhibit {String(globalIdx + 1).padStart(2, '0')}</p>
                 </div>
-              </motion.div>
+              </div>
             );
 
             return (
