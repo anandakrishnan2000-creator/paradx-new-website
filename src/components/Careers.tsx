@@ -95,7 +95,7 @@ export const Careers = () => {
             </p>
 
             <a 
-              href="mailto:admin@paradxdigital.com?subject=My%20Vision%20For%20Paradx"
+              href="mailto:hello@paradxdigital.com?subject=My%20Vision%20For%20Paradx"
               className="inline-block bg-brand-accent text-brand-dark px-12 py-6 rounded-full font-sans font-black text-lg tracking-widest uppercase hover:bg-white hover:scale-105 transition-all duration-300 relative z-10 shadow-[0_0_40px_rgba(0,229,255,0.2)]"
             >
               Send Your Pitch

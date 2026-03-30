@@ -109,7 +109,7 @@ export const ContactUs = () => {
               onClick={() => document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' })} 
               className="font-display font-black text-3xl md:text-5xl tracking-tighter hover:text-brand-accent transition-colors block"
             >
-              admin@paradxdigital.com
+              hello@paradxdigital.com
             </button>
           </motion.div>
         </div>
