@@ -135,57 +135,72 @@ export const ContactUs = () => {
                </p>
              </motion.div>
 
-             <form className="flex flex-col gap-8 w-full" onSubmit={(e) => e.preventDefault()}>
-               
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                 <div className="flex flex-col relative group">
-                   <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Name *</label>
-                   <input type="text" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors" required placeholder="Aarav Patel" />
-                 </div>
-                 <div className="flex flex-col relative group">
-                   <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Email *</label>
-                   <input type="email" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors" required placeholder="aarav@zenith.in" />
-                 </div>
-               </div>
+              <form className="flex flex-col gap-8 w-full" onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const countryCode = formData.get('countryCode');
+                const phone = formData.get('phone');
+                const bizName = formData.get('bizName');
+                const message = formData.get('message');
+                
+                const subject = `New Inquiry from ${name || 'Website User'}`;
+                const body = `Name: ${name}\nEmail: ${email}\nPhone: ${countryCode} ${phone}\nBusiness Name: ${bizName || 'N/A'}\n\nMessage:\n${message}`;
+                
+                window.location.href = `mailto:hello@paradxdigital.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+              }}>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="flex flex-col relative group">
+                    <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Name *</label>
+                    <input type="text" name="name" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors" required placeholder="Aarav Patel" />
+                  </div>
+                  <div className="flex flex-col relative group">
+                    <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Email *</label>
+                    <input type="email" name="email" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors" required placeholder="aarav@zenith.in" />
+                  </div>
+                </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                 <div className="flex flex-col relative group">
-                   <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Phone</label>
-                   <div className="flex w-full items-center border-b-2 border-brand-dark/10 focus-within:border-brand-accent transition-colors">
-                     <select 
-                       defaultValue="+91"
-                       className="bg-transparent py-3 text-lg font-sans font-medium text-brand-dark focus:outline-none cursor-pointer border-r border-brand-dark/10 pr-2 mr-4 flex-shrink-0 w-[140px] appearance-none"
-                     >
-                        {countryCodes.map((country) => (
-                          <option key={country.name} value={country.code}>
-                            {country.name} ({country.code})
-                          </option>
-                        ))}
-                     </select>
-                     <input type="tel" className="w-full bg-transparent py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none" placeholder="98765 43210" />
-                   </div>
-                 </div>
-                 <div className="flex flex-col relative group">
-                   <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Business Name</label>
-                   <input type="text" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors" placeholder="Zenith Enterprises" />
-                 </div>
-               </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="flex flex-col relative group">
+                    <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Phone</label>
+                    <div className="flex w-full items-center border-b-2 border-brand-dark/10 focus-within:border-brand-accent transition-colors">
+                      <select 
+                        name="countryCode"
+                        defaultValue="+91"
+                        className="bg-transparent py-3 text-lg font-sans font-medium text-brand-dark focus:outline-none cursor-pointer border-r border-brand-dark/10 pr-2 mr-4 flex-shrink-0 w-[140px] appearance-none"
+                      >
+                         {countryCodes.map((country) => (
+                           <option key={country.name} value={country.code}>
+                             {country.name} ({country.code})
+                           </option>
+                         ))}
+                      </select>
+                      <input type="tel" name="phone" className="w-full bg-transparent py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none" placeholder="98765 43210" />
+                    </div>
+                  </div>
+                  <div className="flex flex-col relative group">
+                    <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Business Name</label>
+                    <input type="text" name="bizName" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors" placeholder="Zenith Enterprises" />
+                  </div>
+                </div>
 
-               <div className="flex flex-col relative group mt-4">
-                 <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Message *</label>
-                 <textarea className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors resize-none h-32" required placeholder="Tell us about your project..."></textarea>
-               </div>
+                <div className="flex flex-col relative group mt-4">
+                  <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Message *</label>
+                  <textarea name="message" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors resize-none h-32" required placeholder="Tell us about your project..."></textarea>
+                </div>
 
-               <motion.button 
-                 whileHover={{ scale: 1.02 }}
-                 whileTap={{ scale: 0.98 }}
-                 type="submit" 
-                 className="mt-8 bg-brand-dark text-white px-12 py-6 rounded-full font-sans font-bold text-sm tracking-widest uppercase hover:bg-brand-accent hover:text-brand-dark transition-colors self-start shadow-xl"
-               >
-                 Send Message
-               </motion.button>
-               
-             </form>
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit" 
+                  className="mt-8 bg-brand-dark text-white px-12 py-6 rounded-full font-sans font-bold text-sm tracking-widest uppercase hover:bg-brand-accent hover:text-brand-dark transition-colors self-start shadow-xl"
+                >
+                  Send Message
+                </motion.button>
+                
+              </form>
         </div>
 
       </section>
