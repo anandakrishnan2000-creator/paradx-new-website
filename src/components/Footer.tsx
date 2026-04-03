@@ -2,7 +2,7 @@ export const Footer = ({ setActivePage }: { setActivePage?: (page: string) => vo
   return (
     <footer className="bg-brand-dark text-white pt-24 pb-8 px-6 md:px-12 relative overflow-hidden">
       <div className="max-w-[1400px] mx-auto text-center">
-        <h2 className="font-sans font-bold text-base md:text-lg tracking-[0.3em] uppercase text-brand-accent mb-12">
+        <h2 className="font-sans font-bold text-xs md:text-lg tracking-[0.3em] uppercase text-brand-accent mb-4 md:mb-6">
           LET'S CONNECT
         </h2>
         
@@ -15,7 +15,7 @@ export const Footer = ({ setActivePage }: { setActivePage?: (page: string) => vo
               window.scrollTo(0, 0);
             }
           }}
-          className="inline-block font-display text-4xl md:text-9xl lg:text-[10rem] font-black uppercase tracking-[-0.04em] leading-none hover:text-brand-accent transition-colors duration-500 mt-6"
+          className="inline-block font-display text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] font-black uppercase tracking-tighter md:tracking-[-0.04em] leading-none hover:text-brand-accent transition-colors duration-500"
           data-cursor="hover"
         >
           Let's Work
