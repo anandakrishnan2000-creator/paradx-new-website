@@ -3,34 +3,70 @@ import { useState, useEffect } from 'react';
 
 const services = [
   {
-    title: "BRANDING.",
-    description: "Engineering magnetic brand identities.",
-    image: "/svc_1.png"
+    title: "STRATEGY & PLANNING.",
+    points: [
+      "Predictive Market Research & Campaign Strategy",
+      "Brand Positioning & Narrative Architecture",
+      "Competitive Analysis & Audience Modeling",
+      "Full-Funnel Growth Strategy Formulation",
+      "Marketing Revenue Operations (RevOps)"
+    ],
+    image: "/svc_strategy_1.png"
   },
   {
-    title: "CREATIVE.",
-    description: "Thumb-stopping premium creative assets.",
-    image: "/svc_2.png"
+    title: "CREATIVE PRODUCTION.",
+    points: [
+      "High-Fidelity Design & 3D Interactive Assets",
+      "Omnichannel Video & Cinematic Production",
+      "Dynamic Content Storytelling Ecosystems",
+      "Copywriting & Brand Voice Formulation",
+      "Generative AI & Rapid Prototyping"
+    ],
+    image: "/svc_creative_1.png"
   },
   {
-    title: "WEBSITE.",
-    description: "High-performance digital flagship stores.",
-    image: "/svc_3.png"
+    title: "WEBSITE & INFRASTRUCTURE.",
+    points: [
+      "Custom High-Performance Web Development",
+      "UX/UI & Conversion-Optimized Web Experiences",
+      "E-Commerce & Custom App Development",
+      "Advanced API & Platform Integrations",
+      "Technical SEO & Site Architecture"
+    ],
+    image: "/svc_web_1.png"
   },
   {
-    title: "PAID.",
-    description: "Data-driven ROI & exponential acquisition.",
-    image: "/svc_4.png"
+    title: "MEDIA & ACQUISITION.",
+    points: [
+      "Algorithmic Paid Media & Direct Ad Placements",
+      "Programmatic Media Buying & Retargeting",
+      "Elite Influencer & KOL Strategic Partnerships",
+      "Viral Organic Outreach & Community Incubation",
+      "Social Commerce & Native Platform Selling"
+    ],
+    image: "/svc_media_1.png"
   },
   {
-    title: "CONTENT.",
-    description: "Culturally relevant native content strategies.",
-    image: "/svc_5.png"
+    title: "AUTOMATION ENGINEERING.",
+    points: [
+      "Advanced Email & WhatsApp Automation",
+      "Conversational AI & NLP Chatbots",
+      "Cross-Platform SMS Retargeting Funnels",
+      "Customer Data Platform (CDP) Integrations",
+      "Machine Learning Derived Loyalty Pipelines"
+    ],
+    image: "/svc_auto_1.png"
   },
   {
-    title: "INFLUENCER.",
-    description: "Authentic creator-led viral growth.",
-    image: "/svc_6.png"
+    title: "DATA & MANAGEMENT.",
+    points: [
+      "Real-Time Dashboards & Campaign Monitoring",
+      "White-Glove Dedicated Account Management",
+      "Enterprise Tool, Software & API Licenses",
+      "Predictive Performance Analytics & Reporting",
+      "A/B Testing & Continuous Conversion Optimization"
+    ],
+    image: "/svc_data_1.png"
   }
 ];
 
@@ -50,11 +86,11 @@ export const HomeServices = ({ setActivePage }: { setActivePage?: (page: string,
           Our Tools
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, i) => (
             <motion.div
               key={i}
-              className="bg-gray-100 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden h-[450px] shadow-sm hover:shadow-2xl transition-shadow duration-500"
+              className="bg-gray-100 rounded-[2.5rem] p-6 sm:p-8 2xl:p-10 relative overflow-hidden flex flex-col min-h-[400px] sm:min-h-[450px] h-full shadow-sm hover:shadow-2xl transition-shadow duration-500"
               initial="initial"
               whileHover="hover"
               whileInView={isMobile ? "hover" : undefined}
@@ -82,31 +118,36 @@ export const HomeServices = ({ setActivePage }: { setActivePage?: (page: string,
                 }}
               >
                 <img src={service.image} alt={service.title} className="absolute inset-0 w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-brand-dark/70"></div>
+                <div className="absolute inset-0 bg-brand-dark/70 z-20"></div>
               </motion.div>
               
-              <div className="relative z-10 flex flex-col h-full justify-between pointer-events-none">
+              <div className="relative z-10 flex flex-col h-full justify-start pointer-events-none">
                 <div>
                   <motion.div 
                     variants={{ initial: { color: "#9ca3af" }, hover: { color: "#ffffff" } }}
-                    className="font-sans font-bold text-sm tracking-[0.2em] mb-4 opacity-50 z-20">
+                    className="font-sans font-bold text-xs md:text-sm tracking-[0.2em] mb-2 opacity-50 z-20">
                     0{i + 1}
                   </motion.div>
                   <motion.h3 
                     variants={{ initial: { color: "#111827" }, hover: { color: "#ffffff" } }}
-                    className="font-display font-black text-4xl md:text-5xl uppercase tracking-tighter leading-none z-20">
+                    className="font-display font-black text-3xl xl:text-4xl uppercase tracking-tighter leading-none z-20 break-words mb-8">
                     {service.title}
                   </motion.h3>
                 </div>
                 
-                <motion.p 
+                <motion.div 
                   variants={{
                     initial: { opacity: 0, y: 16 },
                     hover: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } }
                   }}
-                  className="font-sans text-base leading-relaxed text-white">
-                  {service.description}
-                </motion.p>
+                  className="font-sans text-sm md:text-[15px] xl:text-base leading-snug xl:leading-relaxed text-white space-y-2 xl:space-y-3">
+                  {service.points.map((point, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5">
+                      <div className="w-1 h-1 bg-brand-accent shrink-0 mt-2 rounded-sm opacity-90"></div>
+                      <span className="font-medium tracking-wide">{point}</span>
+                    </div>
+                  ))}
+                </motion.div>
               </div>
             </motion.div>
           ))}

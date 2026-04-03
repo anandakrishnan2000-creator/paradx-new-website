@@ -94,7 +94,7 @@ export const Navbar = ({ activePage = 'Home', setActivePage, appLoaded = true }:
                         window.scrollTo(0, 0);
                       }
                     }}
-                    className={`font-display text-4xl md:text-7xl font-bold uppercase transition-colors ${activePage === link ? 'text-brand-dark' : 'text-white hover:text-brand-dark'}`} 
+                    className={`font-display text-3xl md:text-5xl lg:text-6xl font-black tracking-tight uppercase transition-colors ${activePage === link ? 'text-brand-dark' : 'text-white hover:text-brand-dark'}`} 
                     data-cursor="hover"
                   >
                     {link}

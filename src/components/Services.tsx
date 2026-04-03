@@ -2,69 +2,285 @@ import { motion } from 'framer-motion';
 
 const servicesList = [
   {
-    image: "/svc_1.png",
-    titleLine1: "BRANDING",
-    titleLine2: "EXPERTISE",
+    images: [
+      "/svc_strategy_1.png",
+      "/svc_strategy_2.png"
+    ],
+    titleLine1: "STRATEGY",
+    titleLine2: "& PLANNING",
     description: (
-      <>
-        Your brand isn't just a logo—it's the heartbeat of your business. We engineer magnetic brand identities from the ground up, starting with intensive strategy workshops that excavate your true purpose and lock in an unmistakable tone of voice.<br/><br/>
-        Whether you are launching a bold new venture or breathing life into an established legacy, we craft a cohesive narrative that resonates deeply with your audience and leaves your competitors in the dust.
-      </>
+      <ul className="space-y-6 list-none mt-4">
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Predictive Market Research & Campaign Strategy</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We deploy advanced behavioral analytics and data modeling to pinpoint exactly where your target audience lives, creating bulletproof go-to-market strategies that eliminate guesswork.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Brand Positioning & Narrative Architecture</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We engineer a commanding brand voice and an unshakeable market position. Your brand will not just participate in the market; it will dictate the conversation.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Competitive Analysis & Audience Modeling</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Deep-dive reconnaissance into competitor blind spots allows us to isolate underserved demographics and architect precise psychographic models of your most profitable customers.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Full-Funnel Growth Strategy Formulation</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">From first-touch awareness to long-term retention, we design holistic, multi-channel growth structures that mathematically guarantee compounding ROI at every step of the funnel.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Marketing Revenue Operations (RevOps)</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We align your entire marketing, sales, and service infrastructure to eliminate friction, drastically accelerating the velocity at which prospects convert into high-ticket clients.</span>
+          </div>
+        </li>
+      </ul>
     )
   },
   {
-    image: "/svc_2.png",
+    images: [
+      "/svc_creative_1.png",
+      "/svc_creative_2.png"
+    ],
     titleLine1: "CREATIVE",
-    titleLine2: "DESIGN",
+    titleLine2: "PRODUCTION",
     description: (
-      <>
-        In a world of infinite scrolling, generic aesthetics simply don't survive. We design thumb-stopping, premium creative assets that command absolute attention. From striking digital campaigns to immersive brand ecosystems, our team fuses art with behavioral psychology.<br/><br/>
-        We don't just make things look pretty; we build visual experiences that provoke emotion, drive instant recognition, and transform passive viewers into fiercely loyal brand advocates.
-      </>
+      <ul className="space-y-6 list-none mt-4">
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">High-Fidelity Design & 3D Interactive Assets</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Thumb-stopping, ultra-premium graphical assets and immersive 3D experiences engineered specifically to command absolute attention in an oversaturated digital landscape.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Omnichannel Video & Cinematic Production</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We produce elite, cinematic-grade video content natively optimized to exploit the unique algorithmic constraints of every major social platform and broadcast standard.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Dynamic Content Storytelling Ecosystems</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We don't just post content; we build psychological narrative loops that nurture your audience over time, converting passive scrollers into rabid, loyal brand advocates.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Copywriting & Brand Voice Formulation</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Ruthless, razor-sharp sales copy and brand messaging forged from behavioral psychology principles designed exclusively to maximize your conversion rates on the spot.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Generative AI & Rapid Prototyping</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Leveraging cutting-edge AI models, we rapidly iterate through thousands of creative variations to find the absolute highest-converting visual angles faster than humanly possible.</span>
+          </div>
+        </li>
+      </ul>
     )
   },
   {
-    image: "/svc_3.png",
+    images: [
+      "/svc_web_1.png",
+      "/svc_web_2.png"
+    ],
     titleLine1: "WEBSITE",
-    titleLine2: "DEVELOPMENT",
+    titleLine2: "& INFRASTRUCTURE",
     description: (
-      <>
-        We don't just build websites; we engineer high-performance digital flagship stores. Your digital presence should be a frictionless, immersive journey that converts at the highest possible rate while reflecting your premium positioning.<br/><br/>
-        Our development team obsesses over load speeds, seamless interactions, and state-of-the-art UI/UX architecture to ensure your web presence is as intelligent and lightning-fast as it is beautiful.
-      </>
+      <ul className="space-y-6 list-none mt-4">
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Custom High-Performance Web Development</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Lightning-fast, bespoke digital storefronts and robust web applications coded from absolute scratch using enterprise-grade architectures that never crash under pressure.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">UX/UI & Conversion-Optimized Web Experiences</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Frictionless, beautifully intuitive user journeys designed explicitly using cognitive psychology to funnel visitors seamlessly toward the checkout or lead capture phase.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">E-Commerce & Custom App Development</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">End-to-end commerce platforms engineered to handle massive product catalogs and severe traffic spikes, ensuring your digital storefront remains highly profitable 24/7.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Advanced API & Platform Integrations</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We seamlessly connect your website to essential third-party CRMs, payment gateways, and fulfillment tools, creating an automated, unified operational ecosystem.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Technical SEO & Site Architecture</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We restructure your site code, schema markup, and loading taxonomy to secure aggressive organic dominance and immediate visibility at the top of search engine algorithms.</span>
+          </div>
+        </li>
+      </ul>
     )
   },
   {
-    image: "/svc_4.png",
-    titleLine1: "PAID",
-    titleLine2: "MEDIA",
+    images: [
+      "/svc_media_1.png",
+      "/svc_media_2.png"
+    ],
+    titleLine1: "MEDIA",
+    titleLine2: "& ACQUISITION",
     description: (
-      <>
-        Stop guessing and start dominating. We treat your ad spend like an investment portfolio, utilizing brutal data-driven precision to maximize your daily ROI and systematically scale your revenue.<br/><br/>
-        Our paid media architects design omni-channel acquisition machines across Meta, Google, and beyond. We relentlessly test creatives and exploit algorithmic advantages to hijack your market share.
-      </>
+      <ul className="space-y-6 list-none mt-4">
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Algorithmic Paid Media & Direct Ad Placements</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Highly targeted, aggressive media buying strategies across Meta, Google, and TikTok designed to exploit bidding algorithms and scale your daily revenue exponentially.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Programmatic Media Buying & Retargeting</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Automated, real-time bidding infrastructure that relentlessly pursues high-intent prospects across the web, ensuring maximum brand recall and immediate recapture of lost sales.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Elite Influencer & KOL Strategic Partnerships</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We orchestrate massive brand exposure by aligning you with top-tier Key Opinion Leaders whose audiences perfectly map to your ideal, high-spending demographic.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Viral Organic Outreach & Community Incubation</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We engineer systemic organic growth mechanisms that manufacture viral moments and harvest deeply loyal, self-sustaining digital communities around your brand.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Social Commerce & Native Platform Selling</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We transform your social feeds directly into frictionless marketplaces, allowing users to discover, desire, and purchase your products without ever leaving the app.</span>
+          </div>
+        </li>
+      </ul>
     )
   },
   {
-    image: "/svc_5.png",
-    titleLine1: "CONTENT",
-    titleLine2: "CREATION",
+    images: [
+      "/svc_auto_1.png",
+      "/svc_auto_2.png"
+    ],
+    titleLine1: "AUTOMATION",
+    titleLine2: "ENGINEERING",
     description: (
-      <>
-        Content is the currency of the modern internet. Our native content strategies ensure your brand remains top-of-mind, culturally relevant, and endlessly engaging across every touchpoint.<br/><br/>
-        From high-end cinematic video production to razor-sharp SEO copywriting, we build an organic ecosystem that educates and entertains, transforming your brand into an authoritative voice that leads the conversation.
-      </>
+      <ul className="space-y-6 list-none mt-4">
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Advanced Email & WhatsApp Automation</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Multi-tiered automated sequences designed to capture every dropped lead, systematically recover abandoned shopping carts, and push promotional broadcasts instantly.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Conversational AI & NLP Chatbots</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We deploy highly intelligent machine-learning chatbots across your web and social assets to deliver the exact right sales pitch precisely when a customer asks a question.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Cross-Platform SMS Retargeting Funnels</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Hyper-direct, high-conversion mobile text messaging funnels that slice strictly through the noise and land your most critical offers directly into the palm of the buyer's hand.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Customer Data Platform (CDP) Integrations</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We aggregate highly siloed user touchpoints into a centralized master brain, giving you an omniscient view of every single customer's buying habits and lifetime value.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Machine Learning Derived Loyalty Pipelines</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Predictive retention models that automatically trigger tailored rewards and outreach exactly when an algorithm detects a high-value customer is at risk of churning.</span>
+          </div>
+        </li>
+      </ul>
     )
   },
   {
-    image: "/svc_6.png",
-    titleLine1: "INFLUENCER",
-    titleLine2: "MARKETING",
+    images: [
+      "/svc_data_1.png",
+      "/svc_data_2.png"
+    ],
+    titleLine1: "DATA",
+    titleLine2: "& MANAGEMENT",
     description: (
-      <>
-        Trust cannot be bought, but it can be borrowed. We orchestrate highly curated influencer campaigns that weaponize authentic human connection, turning creators into an extension of your sales force.<br/><br/>
-        Forget vanity metrics. We identify partners who genuinely align with your ethos, driving raw, unfiltered engagement. We spark viral word-of-mouth growth that traditional advertising simply cannot replicate.
-      </>
+      <ul className="space-y-6 list-none mt-4">
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Real-Time Dashboards & Campaign Monitoring</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Custom-built, live telemetry dashboards that provide you with absolute, crystal-clear transparency regarding ad-spend, client acquisition cost, and total ROI instantaneously.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">White-Glove Dedicated Account Management</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Direct, unlimited access to elite growth partners who act as an extension of your internal team, guiding daily execution and strategic pivots with proactive communication.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Enterprise Tool, Software & API Licenses</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">We equip your operational backend with access to the industry's most powerful, prohibitively expensive marketing software suites and commercial licensing integrations.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">Predictive Performance Analytics & Reporting</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">Deep-dive statistical analyses that don't just summarize past performance, but mathematically forecast future revenue trends so you can allocate capital exactly where it belongs.</span>
+          </div>
+        </li>
+        <li className="flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-brand-accent shrink-0 mt-2.5 rounded-sm shadow-[0_0_8px_rgba(0,240,255,0.4)]"></div>
+          <div>
+            <strong className="text-brand-dark font-display block text-xl mb-1 uppercase tracking-tight">A/B Testing & Continuous Conversion Optimization</strong>
+            <span className="font-sans text-brand-dark/70 text-lg leading-relaxed">A relentless, scientific methodology of testing hundreds of variables—from button colors to headline copy—to incrementally squeeze every possible dollar from your traffic.</span>
+          </div>
+        </li>
+      </ul>
     )
   }
 ];
@@ -121,13 +337,17 @@ export const Services = () => {
             transition={{ duration: 0.7 }}
             className={`flex flex-col md:flex-row gap-8 md:gap-16 items-center ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
           >
-            {/* Image */}
-            <div className="w-full md:w-[45%] h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-2xl shrink-0 group">
-              <img 
-                src={service.image} 
-                alt={service.titleLine1} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+            {/* Images */}
+            <div className="w-full md:w-[45%] flex flex-col gap-6 md:gap-8 shrink-0">
+              {service.images.map((img, idx) => (
+                <div key={idx} className="w-full h-[350px] md:h-[450px] overflow-hidden rounded-[2rem] shadow-2xl group bg-brand-dark">
+                  <img 
+                    src={img} 
+                    alt={`${service.titleLine1} detail ${idx + 1}`} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-85 group-hover:opacity-100"
+                  />
+                </div>
+              ))}
             </div>
 
             {/* Content */}

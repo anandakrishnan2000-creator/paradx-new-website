@@ -112,11 +112,7 @@ export const caseStudyData: Record<string, CaseStudy> = {
       { value: "OMNI", label: "CHANNEL APPROACH" },
       { value: "TIER-1", label: "INSTITUTIONAL GROWTH" }
     ],
-    gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-    ]
+    gallery: []
   },
   "vogue-shade": {
     name: "VOGUE SHADE",
@@ -247,8 +243,6 @@ const RenderMediaItem = ({ url, className = "" }: { url: any, className?: string
 };
 
 const PortfolioGallery = ({ items, clientName, xQuote, xDesc }: { items: string[], clientName: string, xQuote?: string, xDesc?: string }) => {
-  if (items.length === 0) return null;
-
   return (
     <section className="bg-brand-dark py-32 px-6 md:px-12 relative z-30 overflow-hidden border-t border-white/5">
       {/* Geometric Background Accents */}
@@ -422,34 +416,37 @@ export const CaseStudyDetail = ({ clientId, onBack, setActivePage }: { clientId:
         </div>
 
         {/* Content Layer */}
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 flex flex-col items-center text-center mt-20">
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center mt-32 lg:mt-20 pb-32 lg:pb-16">
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="w-full"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            className="w-full flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            <span className="font-sans font-bold text-brand-accent tracking-[0.3em] text-sm uppercase block mb-8">
+            <span className="font-sans font-bold text-brand-accent tracking-[0.3em] text-xs md:text-sm uppercase block mb-6 px-4 py-1.5 border border-brand-accent/30 rounded-full bg-brand-accent/10 backdrop-blur-sm self-center lg:self-start inline-block">
               {data.tags}
             </span>
 
-            {/* Break-Proof Responsive Title */}
-            <h1 className="font-display font-black text-6xl md:text-[clamp(5rem,9vw,12rem)] leading-[0.9] tracking-tight uppercase text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] relative z-0 mx-auto max-w-5xl">
+            {/* Break-Safe Responsive Hero Title */}
+            <h1 className="font-display font-black text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] leading-[0.95] tracking-tighter uppercase text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] relative z-0 break-normal w-full">
               {data.name}
             </h1>
           </motion.div>
 
-          {/* Floating Pristine White Device / Logo Box */}
+          {/* Clean Floating Logo Box Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 100 }}
-            animate={{ opacity: 1, scale: 1, y: -40 }}
-            transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 50 }}
-            className="w-full max-w-2xl mx-auto h-[400px] relative z-20 mt-12 md:mt-0 flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.8, x: 50 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 50 }}
+            className="w-full flex justify-center lg:justify-end relative z-20"
           >
-            {/* Dynamic Light Logo Presentation Frame */}
-            <div className="w-80 md:w-[400px] aspect-square bg-white rounded-[3rem] p-16 shadow-[0_40px_100px_rgba(0,0,0,0.3)] border border-gray-100 flex items-center justify-center -rotate-3 hover:rotate-0 transition-transform duration-700 hover:-translate-y-4 hover:shadow-[0_40px_100px_rgba(0,229,255,0.2)]">
-              <img src={data.logo} alt="Client Logo" className="w-full h-full object-contain filter drop-shadow-xl" />
+            {/* Elegant Right-Aligned Logo Box */}
+            <div className="w-[85%] max-w-[320px] lg:max-w-[380px] aspect-square bg-white rounded-[2.5rem] p-12 lg:p-16 shadow-[0_30px_80px_rgba(0,0,0,0.4)] border border-gray-100 flex items-center justify-center transition-all duration-700 hover:-translate-y-4 hover:shadow-[0_40px_100px_rgba(0,229,255,0.25)] relative overflow-hidden group mx-auto lg:mr-8 xl:mr-16">
+               {/* Internal interactive glow element */}
+               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.08)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+               
+              <img src={data.logo} alt="Client Logo" className="w-full h-full object-contain filter drop-shadow-xl group-hover:scale-105 transition-transform duration-500 relative z-10" />
             </div>
           </motion.div>
         </div>
@@ -614,13 +611,13 @@ export const CaseStudyDetail = ({ clientId, onBack, setActivePage }: { clientId:
                       </filter>
                     </defs>
 
-                    {/* Soft Area Fill */}
+                    {/* Soft Area Fill (Variation & Bloom) */}
                     <motion.path
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 1.5, delay: 0.8 }}
-                      d="M 0,380 C 250,370 450,280 650,150 C 800,50 900,20 1000,20 L 1000,400 L 0,400 Z"
+                      d="M 0,350 C 120,340 180,380 280,360 C 400,340 480,220 600,180 C 720,140 850,50 1000,20 L 1000,400 L 0,400 Z"
                       fill="url(#chartGradient)"
                     />
 
@@ -630,7 +627,7 @@ export const CaseStudyDetail = ({ clientId, onBack, setActivePage }: { clientId:
                       whileInView={{ pathLength: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 2, ease: "easeInOut" }}
-                      d="M 0,380 C 250,370 450,280 650,150 C 800,50 900,20 1000,20"
+                      d="M 0,350 C 120,340 180,380 280,360 C 400,340 480,220 600,180 C 720,140 850,50 1000,20"
                       fill="none"
                       stroke="#00E5FF"
                       strokeWidth="6"
@@ -664,7 +661,27 @@ export const CaseStudyDetail = ({ clientId, onBack, setActivePage }: { clientId:
                     <span>Day 90</span>
                   </div>
 
-                  {/* Absolute Hover Tooltip */}
+                  {/* Absolute Data Annotations for Variation & Bloom */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 1.5, type: "spring" }}
+                    className="absolute top-[85%] left-[22%] bg-[#111]/90 backdrop-blur-md border border-white/10 text-white px-3 py-1.5 font-sans font-bold text-[9px] md:text-[10px] uppercase tracking-[0.2em] rounded-full hidden md:block shadow-xl"
+                  >
+                    System Variation
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 1.8, type: "spring" }}
+                    className="absolute top-[40%] left-[55%] bg-[#111]/90 backdrop-blur-md border border-white/10 text-white px-3 py-1.5 font-sans font-bold text-[9px] md:text-[10px] uppercase tracking-[0.2em] rounded-full hidden md:block shadow-xl shadow-brand-accent/10"
+                  >
+                    Acquisition Bloom
+                  </motion.div>
+
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -672,7 +689,7 @@ export const CaseStudyDetail = ({ clientId, onBack, setActivePage }: { clientId:
                     transition={{ delay: 2.2, type: "spring" }}
                     className="absolute top-[-35px] right-[-15px] bg-brand-accent text-[#000] px-4 py-2 font-display font-black text-sm uppercase shadow-[0_15px_30px_rgba(0,229,255,0.4)] md:rounded-tl-2xl rounded-sm"
                   >
-                    System Scaled
+                    4.6X MRR Peak
                   </motion.div>
                 </div>
               </motion.div>
@@ -758,12 +775,8 @@ export const CaseStudyDetail = ({ clientId, onBack, setActivePage }: { clientId:
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center flex flex-col items-center max-w-5xl mx-auto">
           <div className="absolute top-0 right-1/2 translate-x-1/2 w-[600px] h-[400px] bg-brand-accent/5 blur-[120px] rounded-full pointer-events-none"></div>
           <h3 className="font-display font-black text-white uppercase tracking-tighter mb-8 relative z-10">
-            <span className="block text-5xl md:text-[5rem] leading-[0.9] mb-4">Got A Similar Idea?</span>
-            <span className="block text-3xl md:text-5xl leading-[1.1] text-white/40">Launch Before Your Competitor Does.</span>
+            <span className="block text-5xl md:text-[5rem] leading-[0.9]">Got Something In Mind?</span>
           </h3>
-          <p className="font-serif italic text-brand-accent text-2xl md:text-3xl mb-12 relative z-10">
-            Let’s build your next growth engine.
-          </p>
           <button
             onClick={() => setActivePage('Contact Us')}
             className="inline-flex items-center gap-4 bg-brand-accent text-[#000] px-12 py-6 rounded-full font-sans font-black tracking-[0.2em] text-sm md:text-base uppercase shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:shadow-[0_0_80px_rgba(0,229,255,0.8)] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] relative z-10"

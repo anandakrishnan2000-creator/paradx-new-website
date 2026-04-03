@@ -2,8 +2,8 @@ export const Footer = ({ setActivePage }: { setActivePage?: (page: string) => vo
   return (
     <footer className="bg-brand-dark text-white pt-24 pb-8 px-6 md:px-12 relative overflow-hidden">
       <div className="max-w-[1400px] mx-auto text-center">
-        <h2 className="font-sans font-bold text-sm tracking-[0.3em] uppercase text-brand-accent mb-12">
-          SO WHAT'S NEXT?
+        <h2 className="font-sans font-bold text-base md:text-lg tracking-[0.3em] uppercase text-brand-accent mb-12">
+          LET'S CONNECT
         </h2>
         
         <a 
@@ -18,7 +18,7 @@ export const Footer = ({ setActivePage }: { setActivePage?: (page: string) => vo
           className="inline-block font-display text-4xl md:text-9xl lg:text-[10rem] font-black uppercase tracking-[-0.04em] leading-none hover:text-brand-accent transition-colors duration-500 mt-6"
           data-cursor="hover"
         >
-          Let's Work!
+          Let's Work
         </a>
       </div>
 

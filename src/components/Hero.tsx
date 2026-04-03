@@ -76,7 +76,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.8 }}
-          className="mt-8 font-sans font-light text-xl md:text-3xl text-brand-gray/80 tracking-wide leading-relaxed"
+          className="mt-8 font-sans font-light text-xl md:text-3xl text-white tracking-wide leading-relaxed"
         >
           Identify the gap. Engineer the solution. Accelerate the growth.
         </motion.div>
@@ -88,9 +88,9 @@ export const Hero = () => {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-0 right-0 px-6 md:px-12 z-10 pointer-events-auto"
       >
-        <div className="max-w-[1400px] mx-auto w-full flex justify-between items-center text-brand-gray uppercase tracking-widest text-sm font-semibold">
-          <span>Be the parad<span className="text-brand-accent">X</span> factor</span>
-          <span className="w-16 h-[1px] bg-brand-gray block"></span>
+        <div className="max-w-[1400px] mx-auto w-full flex justify-between items-center text-white uppercase tracking-widest text-sm font-semibold">
+          <span>Be the parad<span className="text-brand-accent [text-shadow:0_0_10px_#00e5ff,0_0_20px_#00e5ff,0_0_30px_#00e5ff]">X</span> factor</span>
+          <span className="w-16 h-[1px] bg-white block"></span>
         </div>
       </motion.div>
     </section>

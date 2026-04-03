@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+
 
 const countryCodes = [
   { name: "Afghanistan", code: "+93" }, { name: "Albania", code: "+355" }, { name: "Algeria", code: "+213" },
@@ -68,9 +70,44 @@ const countryCodes = [
 ];
 
 export const ContactUs = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // !!! IMPORTANT !!!
+    // Go to https://web3forms.com/, enter hello@paradxdigital.com, 
+    // and click "Create Access Key". Paste the key below:
+    const WEB3FORMS_ACCESS_KEY = "a9c4f166-89b8-4365-89af-fdc04ba135b5";
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+      } else {
+        console.error("Form submission failed");
+        alert("Failed to send message. Please try again or email us directly at hello@paradxdigital.com");
+      }
+    } catch (error) {
+      console.error("Error submitting form", error);
+      alert("Network error. Please email us directly at hello@paradxdigital.com");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="bg-brand-light min-h-screen text-brand-dark relative selection:bg-brand-accent selection:text-brand-dark">
-      
+
       {/* 1. Hero Section */}
       <section className="relative w-full min-h-[500px] flex flex-col items-center justify-center overflow-hidden bg-brand-light px-6 pt-32 pb-20 text-center">
         {/* Premium Light-Theme Glass Architecture */}
@@ -78,131 +115,150 @@ export const ContactUs = () => {
           <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop" alt="Light Architecture" className="w-full h-full object-cover opacity-60 select-none pointer-events-none scale-105 filter grayscale" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/80 to-brand-light"></div>
         </div>
-        
+
         <div className="relative z-10 w-full max-w-[1200px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <span className="font-sans font-bold text-brand-accent tracking-[0.3em] text-sm md:text-md uppercase block mb-6">
-              Get In Touch
-            </span>
-            <h1 className="font-display font-black text-5xl md:text-[clamp(4.5rem,10vw,13rem)] leading-[0.85] tracking-tighter uppercase text-brand-dark">
-              LET'S GET<br/><span className="text-brand-accent">STARTED</span>
+
+            <h1 className="font-display font-black text-5xl md:text-[clamp(4.5rem,10vw,13rem)] leading-[0.85] tracking-tighter uppercase text-brand-dark mb-8 mt-4">
+              LET'S<br /><span className="text-brand-accent">CONNECT.</span>
             </h1>
+            <p className="font-sans font-bold text-[0.65rem] md:text-lg max-w-3xl mx-auto uppercase tracking-[0.2em] text-brand-dark leading-relaxed">
+              Your competition isn't waiting for you to think. <br className="hidden md:block" />
+              Let's get to work.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* 2. Direct Contact Strip */}
-      <section className="w-full bg-brand-dark text-white py-16 px-6">
-        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-center gap-12 md:gap-32 text-center">
-          <motion.div 
+      {/* 2. The Centered Form Layout */}
+      <section id="contact-form-section" className="w-full flex items-center justify-center min-h-[800px] bg-white px-6 py-24 md:py-32">
+        <div className="w-full max-w-[800px]">
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-14 text-center max-w-2xl mx-auto"
+          >
+            <h3 className="font-display font-black text-4xl md:text-5xl uppercase tracking-tighter text-brand-dark mb-4">
+              Be the Parad<span className="text-brand-accent">X</span> Factor.
+            </h3>
+            <p className="font-sans text-brand-dark text-lg md:text-xl leading-relaxed">
+              Fill out the form below. Our team will reach out to you.
+            </p>
+          </motion.div>
+
+          {!isSuccess ? (
+            <form className="flex flex-col gap-8 w-full" onSubmit={handleSubmit}>
+              <input type="hidden" name="from_name" value="Paradx Website" />
+              <input type="hidden" name="subject" value="New Strategic Inquiry" />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="flex flex-col relative group">
+                  <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-dark mb-2">Name *</label>
+                  <input type="text" name="name" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-dark/40 focus:outline-none focus:border-brand-accent transition-colors" required placeholder="Aarav Patel" />
+                </div>
+                <div className="flex flex-col relative group">
+                  <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-dark mb-2">Email *</label>
+                  <input type="email" name="email" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-dark/40 focus:outline-none focus:border-brand-accent transition-colors" required placeholder="aarav@zenith.in" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="flex flex-col relative group">
+                  <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-dark mb-2">Phone</label>
+                  <div className="flex w-full items-center border-b-2 border-brand-dark/10 focus-within:border-brand-accent transition-colors">
+                    <select
+                      name="countryCode"
+                      defaultValue="+91"
+                      className="bg-transparent py-3 text-lg font-sans font-medium text-brand-dark focus:outline-none cursor-pointer border-r border-brand-dark/10 pr-2 mr-4 flex-shrink-0 w-[140px] appearance-none"
+                    >
+                      {countryCodes.map((country) => (
+                        <option key={country.name} value={country.code}>
+                          {country.name} ({country.code})
+                        </option>
+                      ))}
+                    </select>
+                    <input type="tel" name="phone" className="w-full bg-transparent py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-dark/40 focus:outline-none" placeholder="98765 43210" />
+                  </div>
+                </div>
+                <div className="flex flex-col relative group">
+                  <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-dark mb-2">Business Name</label>
+                  <input type="text" name="bizName" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-dark/40 focus:outline-none focus:border-brand-accent transition-colors" placeholder="Zenith Enterprises" />
+                </div>
+              </div>
+
+              <div className="flex flex-col relative group mt-4">
+                <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-dark mb-2">Message *</label>
+                <textarea name="message" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-dark/40 focus:outline-none focus:border-brand-accent transition-colors resize-none h-32" required placeholder="Tell us about your project..."></textarea>
+              </div>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                disabled={isSubmitting}
+                className="mt-8 bg-brand-dark text-white px-12 py-6 rounded-full font-sans font-bold text-sm tracking-widest uppercase hover:bg-brand-accent hover:text-brand-dark transition-colors self-start shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Transmitting Intel...' : 'Send Message'}
+              </motion.button>
+
+            </form>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="w-full bg-brand-dark text-white p-12 md:p-16 rounded-[2rem] text-center flex flex-col items-center justify-center min-h-[400px] shadow-2xl relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-brand-accent/5 opacity-50"></div>
+              <div className="w-20 h-20 bg-brand-accent rounded-full flex items-center justify-center mb-8 shadow-[0_0_40px_rgba(34,211,238,0.3)] mx-auto relative z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f172a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <h4 className="font-display font-black text-3xl md:text-5xl tracking-tighter uppercase mb-4 relative z-10">Intel Received.</h4>
+              <p className="font-sans text-brand-gray/80 text-lg md:text-xl relative z-10 max-w-lg mx-auto">
+                The Paradx collective has been notified. Our strategic team will review your parameters and initiate contact shortly.
+              </p>
+            </motion.div>
+          )}
+        </div>
+      </section>
+
+      {/* 3. Direct Contact Strip & Socials */}
+      <section className="w-full bg-brand-dark text-white py-20 px-6">
+        <div className="max-w-[1400px] mx-auto flex flex-col items-center justify-center text-center">
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="group cursor-pointer"
+            className="flex flex-col items-center gap-8"
           >
-            <span className="font-sans text-brand-gray tracking-[0.2em] font-semibold text-xs md:text-sm uppercase block mb-2 group-hover:text-brand-accent transition-colors">Email Our Team</span>
-            <button 
-              onClick={() => document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' })} 
-              className="font-display font-black text-3xl md:text-5xl tracking-tighter hover:text-brand-accent transition-colors block"
+            <a
+              href="mailto:hello@paradxdigital.com"
+              className="font-display font-black text-3xl md:text-5xl tracking-tighter hover:text-brand-accent transition-colors block cursor-pointer"
             >
               hello@paradxdigital.com
-            </button>
+            </a>
+
+            <div className="flex items-center gap-8 mt-2">
+              <a href="#" aria-label="Instagram" className="text-brand-gray hover:text-brand-accent transition-all hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
+              </a>
+              <a href="#" aria-label="Facebook" className="text-brand-gray hover:text-brand-accent transition-all hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+              </a>
+              <a href="#" aria-label="LinkedIn" className="text-brand-gray hover:text-brand-accent transition-all hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
+              </a>
+              <a href="#" aria-label="Twitter" className="text-brand-gray hover:text-brand-accent transition-all hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" /></svg>
+              </a>
+            </div>
           </motion.div>
         </div>
-      </section>
-
-      {/* 3. The Centered Form Layout */}
-      <section id="contact-form-section" className="w-full flex items-center justify-center min-h-[800px] bg-white px-6 py-24 md:py-32">
-        
-        <div className="w-full max-w-[800px]">
-             
-             <motion.div
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               className="mb-16"
-             >
-               <h2 className="font-display font-black text-5xl md:text-7xl tracking-tighter uppercase text-brand-dark leading-[0.9] mb-6">
-                 LET'S <br/>
-                 <span className="text-brand-accent">TALK!</span>
-               </h2>
-               <p className="font-sans text-brand-gray text-lg md:text-xl">
-                 Fill out the form below and our strategic team will reach out to discuss how Paradx can engineer your next growth phase.
-               </p>
-             </motion.div>
-
-              <form className="flex flex-col gap-8 w-full" onSubmit={(e) => {
-                e.preventDefault();
-                const formData = new FormData(e.currentTarget);
-                const name = formData.get('name');
-                const email = formData.get('email');
-                const countryCode = formData.get('countryCode');
-                const phone = formData.get('phone');
-                const bizName = formData.get('bizName');
-                const message = formData.get('message');
-                
-                const subject = `New Inquiry from ${name || 'Website User'}`;
-                const body = `Name: ${name}\nEmail: ${email}\nPhone: ${countryCode} ${phone}\nBusiness Name: ${bizName || 'N/A'}\n\nMessage:\n${message}`;
-                
-                window.location.href = `mailto:hello@paradxdigital.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-              }}>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="flex flex-col relative group">
-                    <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Name *</label>
-                    <input type="text" name="name" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors" required placeholder="Aarav Patel" />
-                  </div>
-                  <div className="flex flex-col relative group">
-                    <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Email *</label>
-                    <input type="email" name="email" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors" required placeholder="aarav@zenith.in" />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="flex flex-col relative group">
-                    <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Phone</label>
-                    <div className="flex w-full items-center border-b-2 border-brand-dark/10 focus-within:border-brand-accent transition-colors">
-                      <select 
-                        name="countryCode"
-                        defaultValue="+91"
-                        className="bg-transparent py-3 text-lg font-sans font-medium text-brand-dark focus:outline-none cursor-pointer border-r border-brand-dark/10 pr-2 mr-4 flex-shrink-0 w-[140px] appearance-none"
-                      >
-                         {countryCodes.map((country) => (
-                           <option key={country.name} value={country.code}>
-                             {country.name} ({country.code})
-                           </option>
-                         ))}
-                      </select>
-                      <input type="tel" name="phone" className="w-full bg-transparent py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none" placeholder="98765 43210" />
-                    </div>
-                  </div>
-                  <div className="flex flex-col relative group">
-                    <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Business Name</label>
-                    <input type="text" name="bizName" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors" placeholder="Zenith Enterprises" />
-                  </div>
-                </div>
-
-                <div className="flex flex-col relative group mt-4">
-                  <label className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gray mb-2">Message *</label>
-                  <textarea name="message" className="w-full bg-transparent border-b-2 border-brand-dark/10 py-3 text-lg font-sans font-medium text-brand-dark placeholder:text-brand-gray/40 focus:outline-none focus:border-brand-accent transition-colors resize-none h-32" required placeholder="Tell us about your project..."></textarea>
-                </div>
-
-                <motion.button 
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit" 
-                  className="mt-8 bg-brand-dark text-white px-12 py-6 rounded-full font-sans font-bold text-sm tracking-widest uppercase hover:bg-brand-accent hover:text-brand-dark transition-colors self-start shadow-xl"
-                >
-                  Send Message
-                </motion.button>
-                
-              </form>
-        </div>
-
       </section>
     </div>
   );

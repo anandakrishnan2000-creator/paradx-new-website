@@ -12,21 +12,13 @@ export const About = ({ setActivePage }: { setActivePage?: (page: string) => voi
         </div>
         
         <div className="relative z-10 text-center flex flex-col items-center mt-20">
-          <motion.span 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-brand-accent font-sans font-bold text-sm tracking-[0.2em] mb-4 uppercase"
-          >
-            Meet the Team
-          </motion.span>
           <motion.h1 
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="font-display font-bold text-6xl md:text-[9rem] leading-none tracking-tighter uppercase text-white"
+            className="font-display font-bold text-6xl md:text-[7rem] lg:text-[9rem] leading-none tracking-tighter uppercase text-white"
           >
-            About Us
+            Meet the Team
           </motion.h1>
         </div>
 
@@ -37,17 +29,17 @@ export const About = ({ setActivePage }: { setActivePage?: (page: string) => voi
       <section className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
         <div>
           <h2 className="font-display font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.85] mb-12">
-            Loving the <br /> <span className="text-brand-accent italic font-serif opacity-90 normal-case tracking-normal">digital</span> life.
+            The anti-agency <br /> <span className="text-brand-accent italic font-serif opacity-90 normal-case tracking-normal">syndicate.</span>
           </h2>
           <div className="font-sans font-light text-lg md:text-xl leading-[1.8] text-white/70 space-y-8">
             <p>
-              We are Paradx. We don't just build websites or run ads; we embed ourselves inside your business to operate like true growth partners. 
+              Paradx wasn't born in a corporate boardroom; it was forged in the trenches. We are a collective of rogue engineers, founders, and relentless entrepreneurs who spent years mastering radically different verticals in isolation. We didn't learn theory—we built, broke, and scaled real systems across entire industries.
             </p>
             <p>
-              Our journey started with a simple belief: the best marketing doesn't feel like marketing. It feels like an authentic conversation with your ideal audience. We strip away the noise and focus on what matters most—identifying the gap, engineering the solution, and accelerating your growth exponentially.
+              After dominating our respective fields as elite independent freelancers, we realized a profound truth: solving fragmented problems yields fragmented results. To create true scale, we united our specialized expertise under a single, uncompromising umbrella. Paradx is the culmination of that raw experience—a multi-disciplinary strike team where code, design, business operations, and human psychology intersect.
             </p>
             <p>
-              Whether it's branding, creative, paid media, or influencer campaigns, everything we do is precision-engineered for ROI without sacrificing aesthetics.
+              Because we possess deep, hands-on expertise across the entire architectural system of a business—not just the surface-level marketing layer—we don't just run ads or build websites. We drop directly into your operational ecosystem, identify the lethal gaps, and engineer holistic, end-to-end growth engines. When you partner with us, you aren't hiring an agency. You are deploying an unfair advantage.
             </p>
           </div>
           <button 
@@ -88,58 +80,45 @@ export const About = ({ setActivePage }: { setActivePage?: (page: string) => voi
       {/* 3. The Collective */}
       <section className="bg-brand-accent py-32 px-6 md:px-12 text-brand-dark relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto text-center relative z-10">
-          <h2 className="font-display font-black text-6xl md:text-[8rem] uppercase tracking-tighter leading-[0.9]">
-            Meet The <br />
+          <h2 className="font-display font-black text-6xl md:text-[7.5rem] uppercase tracking-tighter leading-[0.9]">
+            The Unified <br />
             <span className="relative inline-block">
-              Collective.
+              Parad<span className="relative inline-block text-brand-dark">
+                o
+                {/* Realistic red ink cross-strike (X) over the 'O' */}
+                {/* Actual External Image of the hand-drawn Red Strike X */}
+                <img 
+                  src="/red-strike-x.png" 
+                  alt="Red Strike X" 
+                  className="absolute top-1/2 left-1/2 w-[160%] max-w-none h-auto -translate-x-[50%] -translate-y-[45%] z-20 pointer-events-none drop-shadow-[0_4px_4px_rgba(225,29,72,0.2)]" 
+                />
+              </span>x.
               <svg className="absolute -bottom-4 left-0 w-full" viewBox="0 0 400 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 15Q150 0 395 10" stroke="#0a0a0a" strokeWidth="8" strokeLinecap="round" />
               </svg>
             </span>
           </h2>
           <p className="mt-12 font-sans font-medium text-lg md:text-xl max-w-2xl mx-auto uppercase tracking-wide text-brand-dark/70">
-            The visionary minds engineering your success.
+            A beautiful contradiction: fiercely independent experts, weaponized into a single, ruthless machine engineered for absolute dominance.
           </p>
 
-          {/* Simple Team Grid mapping placeholders */}
-          <div className="mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { name: "Anandakrishnan", role: "Creative Director", slug: "anandakrishnan" },
-              { name: "Adarsh Nambiar", role: "Head of Strategy", slug: "adarsh" },
-              { name: "Abishek Benny", role: "Lead Developer", slug: "abishek" },
-              { name: "Sayyed", role: "Design Lead", slug: "sayyed" },
-              { name: "Hari Krishnan", role: "Growth Architect", slug: "hari" },
-              { name: "Ashish Antony", role: "Digital Specialist", slug: "ashish" }
-            ].map((member, i) => {
-              const initials = member.name.split(' ').map(n => n[0]).join('');
-              return (
-                <motion.div 
-                  key={i} 
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="group cursor-pointer" 
-                  data-cursor="hover"
-                >
-                  <div className="w-full aspect-[4/5] overflow-hidden rounded-lg mb-6 bg-brand-dark/50 border border-white/5 flex items-center justify-center relative">
-                    {/* Typographic Fallback */}
-                    <span className="absolute font-display font-black text-6xl text-white/5 uppercase tracking-tighter z-0">
-                      {initials}
-                    </span>
-                    {/* Actual Image (Hides itself if missing) */}
-                    <img 
-                      src={`/team/${member.slug}.jpg`} 
-                      alt={member.name} 
-                      className="absolute inset-0 w-full h-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105 z-10"
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                    />
-                  </div>
-                  <h3 className="font-display font-bold text-2xl uppercase tracking-tighter">{member.name}</h3>
-                </motion.div>
-              );
-            })}
-          </div>
+          {/* Unified Team Group Photo */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mt-24 w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9] rounded-xl lg:rounded-[2rem] overflow-hidden relative shadow-[0_20px_50px_rgba(0,0,0,0.3)] group bg-brand-dark"
+          >
+            {/* DEVELOPMENT PLACEHOLDER: Replace this src with your actual group photo (e.g. src="/team-group.jpg") */}
+            <img 
+              src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=2000&auto=format&fit=crop" 
+              alt="The Paradx Collective Assembled" 
+              className="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-1000 group-hover:scale-105 grayscale mix-blend-luminosity"
+            />
+            {/* Cinematic dark gradient to blend the photo natively */}
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/10 to-transparent pointer-events-none"></div>
+          </motion.div>
         </div>
       </section>
 

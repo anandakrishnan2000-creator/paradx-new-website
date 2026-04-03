@@ -70,16 +70,36 @@ export const CaseStudies = ({ setActivePage }: { setActivePage?: (page: string, 
           className="relative z-10 text-center w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12"
         >
           {/* Left Side: Mockup Collage */}
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-start relative h-[400px]">
-             {/* Simulating a floating phone mockup / collateral */}
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-start relative h-[400px] items-center">
+             
+             {/* Simulating a floating laptop mockup displaying a strategy graph */}
              <motion.div 
                animate={{ y: [0, -15, 0] }}
                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-               className="w-48 md:w-64 h-80 md:h-[400px] bg-brand-light rounded-[3rem] p-3 shadow-2xl shadow-brand-accent/20 border-4 border-brand-dark/50 overflow-hidden relative z-20"
+               className="relative z-20 flex flex-col items-center lg:ml-8"
              >
-               <img src="/svc_6.png" className="w-full h-full object-cover rounded-[2.5rem]" alt="Phone mockup" />
+               {/* Laptop Screen Body */}
+               <div className="w-[300px] md:w-[450px] lg:w-[500px] aspect-[16/10] bg-[#111] rounded-t-2xl md:rounded-t-3xl border-4 md:border-8 border-[#333] p-1 shadow-[0_30px_60px_rgba(0,0,0,0.6)] shadow-brand-accent/10 overflow-hidden relative flex flex-col">
+                  {/* Laptop Camera dot */}
+                  <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-black/50 border border-[#222] absolute top-1 left-1/2 -translate-x-1/2 z-30"></div>
+                  
+                  {/* The Dashboard Graph Image as the 'Screen' */}
+                  <img 
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" 
+                    className="w-full h-full object-cover rounded-sm filter contrast-125 pt-1" 
+                    alt="Laptop dashboard mockup" 
+                  />
+                  
+                  {/* Subtle Screen Glare */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none mix-blend-overlay"></div>
+               </div>
+               
+               {/* Laptop Base (Keyboard Deck) */}
+               <div className="w-[340px] md:w-[500px] lg:w-[560px] h-3 md:h-4 bg-gradient-to-b from-[#333] to-[#1a1a1a] rounded-b-xl md:rounded-b-2xl shadow-2xl flex justify-center relative border-t border-[#444] z-30 transition-transform">
+                 {/* Trackpad Indentation Notch */}
+                 <div className="w-16 md:w-24 h-1.5 bg-[#1a1a1a] rounded-b-md absolute top-0 shadow-inner"></div>
+               </div>
              </motion.div>
-
 
           </div>
 
@@ -184,10 +204,10 @@ export const CaseStudies = ({ setActivePage }: { setActivePage?: (page: string, 
               >
                 <div className="text-brand-dark">
                   <h3 className="font-display font-black text-4xl md:text-5xl uppercase tracking-tighter leading-none mb-4">
-                    GOT A <br/>SIMILAR <br/>PROJECT?
+                    GOT <br/>SOMETHING <br/>IN MIND?
                   </h3>
-                  <p className="font-sans font-medium text-brand-dark/70">
-                    Let's engineer your growth.
+                  <p className="font-sans font-bold text-white uppercase tracking-[0.2em] text-xs md:text-sm">
+                    Book a strategy call
                   </p>
                 </div>
                 <div className="self-end bg-brand-dark text-brand-accent w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
