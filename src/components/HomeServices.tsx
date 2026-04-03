@@ -130,7 +130,7 @@ export const HomeServices = ({ setActivePage }: { setActivePage?: (page: string,
                   </motion.div>
                   <motion.h3 
                     variants={{ initial: { color: "#111827" }, hover: { color: "#ffffff" } }}
-                    className="font-display font-black text-3xl xl:text-4xl uppercase tracking-tighter leading-none z-20 break-words mb-8">
+                    className="font-display font-black text-[clamp(1.75rem,8vw,2.25rem)] xl:text-4xl uppercase tracking-tighter leading-none z-20 break-words md:break-normal hyphens-auto mb-8">
                     {service.title}
                   </motion.h3>
                 </div>
