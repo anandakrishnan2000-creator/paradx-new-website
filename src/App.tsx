@@ -15,20 +15,8 @@ import { Careers } from './components/Careers';
 
 function App() {
   const [appLoaded, setAppLoaded] = useState(false);
-  const [activePage, setActivePage] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('paradx_activePage');
-      if (saved) return saved;
-    }
-    return 'Home';
-  });
-  const [selectedClient, setSelectedClient] = useState<string | null>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('paradx_selectedClient');
-      if (saved) return saved;
-    }
-    return null;
-  });
+  const [activePage, setActivePage] = useState('Home');
+  const [selectedClient, setSelectedClient] = useState<string | null>(null);
   const [transitionState, setTransitionState] = useState<{ active: boolean, page: string, targetId?: string }>({ active: false, page: '' });
 
   useEffect(() => {
@@ -46,13 +34,11 @@ function App() {
     setTransitionState({ active: true, page, targetId });
     if (clientId) {
       setSelectedClient(clientId);
-      if (typeof window !== 'undefined') localStorage.setItem('paradx_selectedClient', clientId);
     }
     
     // Once expanded: swap the actual view while hidden
     setTimeout(() => {
       setActivePage(page);
-      if (typeof window !== 'undefined') localStorage.setItem('paradx_activePage', page);
       
       // Delay to allow DOM to render before targeting elements
       setTimeout(() => {
